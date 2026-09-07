@@ -2502,13 +2502,21 @@ body[data-capture-device] .portfolio-note { display: none; }
 
 /* Mobile reference flow - four linked screens, matched to the supplied 1750 × 3598 slices. */
 .phone-shell {
-  aspect-ratio: 1750 / 3598;
+  aspect-ratio: auto;
   padding: clamp(6px, .58vw, 9px);
   will-change: transform;
 }
 
 .phone-screen {
+  height: auto;
+  aspect-ratio: 1750 / 3598;
   border-radius: clamp(27px, 2.45vw, 40px);
+}
+
+@media (min-aspect-ratio: 1/1) {
+  .experience-shell {
+    grid-template-columns: minmax(0, 1fr) min(clamp(250px, 25vw, 360px), calc((100dvh - var(--portfolio-note-height) - 104px) * .4864));
+  }
 }
 
 .phone-screen::after {

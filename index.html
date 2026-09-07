@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>节奏应援 · 交互设计作品集</title>
     <meta name="description" content="节奏应援交互设计原型：体验电视与手机的同屏模拟联动、节拍反馈和 IP 动画。" />
-    <link rel="stylesheet" href="./styles.css?v=47" />
+    <link rel="stylesheet" href="./styles.css?v=48" />
   </head>
   <body>
     <div class="experience-shell">
@@ -124,16 +124,12 @@
             <dl><dt>最高连击</dt><dd id="max-combo">0</dd></dl>
           </div>
 
-          <video
+          <canvas
             class="score-character"
             id="score-character"
-            src="./assets/ip-videos/normal-1.webm"
             aria-label="根据应援结果变化的全民K歌形象"
-            autoplay
-            muted
-            playsinline
-            preload="auto"
-          ></video>
+            role="img"
+          ></canvas>
           <div class="character-cheer" id="character-cheer" aria-live="polite" aria-atomic="true">
             <img id="character-cheer-image" src="" alt="" />
           </div>
@@ -180,16 +176,12 @@
                 <div class="character-halo" aria-hidden="true"></div>
                 <div class="character-platform" aria-hidden="true"></div>
                 <div class="result-character-confetti" id="result-character-confetti" aria-hidden="true"></div>
-                <video
+                <canvas
                   class="result-character"
                   id="result-character"
-                  src="./assets/ip-videos/curtain.webm"
                   aria-label="全民K歌形象正在谢幕"
-                  loop
-                  muted
-                  playsinline
-                  preload="auto"
-                ></video>
+                  role="img"
+                ></canvas>
               </section>
 
               <section class="result-next" aria-label="选择后续操作">
@@ -309,6 +301,7 @@
       <span>个人交互设计原型 · 非全民K歌官方产品 · 同屏模拟联动</span>
       <span>点击手机开始 → 点击光圈或按数字 1 应援</span>
     </footer>
-    <script src="./app.js?v=43"></script>
+    <script src="./alpha-player.js?v=1"></script>
+    <script src="./app.js?v=44"></script>
   </body>
 </html>

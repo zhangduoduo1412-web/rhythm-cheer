@@ -10,6 +10,8 @@
 
 默认入口为 `index.html`，`?result=1` 可直接查看结算演示。手机竖屏时可以上下滚动查看电视与手机。
 
+IP 动画使用原始视频提取的透明 WebP 帧图集，由 Canvas 按原帧率播放，避免部分浏览器将 WebM 透明通道显示为黑底。原视频保留为源素材，导出工具为 `scripts/export-animation-atlases.py`（需要 Pillow 与 imageio-ffmpeg）。
+
 ## 发布和维护
 
 GitHub Pages 从 main 分支根目录发布。保留仓库名称、账号名称和 Pages 设置，作品集中的地址就不必更换；更新文件并推送 main 即可更新页面。
