@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>节奏应援 · 交互设计作品集</title>
+    <meta name="description" content="节奏应援交互设计原型：体验电视与手机的同屏模拟联动、节拍反馈和 IP 动画。" />
+    <link rel="stylesheet" href="./styles.css?v=47" />
+  </head>
+  <body>
+    <div class="experience-shell">
+      <section class="tv-device" aria-label="1920乘1080电视画面">
+        <div class="tv-device__bezel">
+          <div class="tv-viewport">
+            <main class="stage" aria-label="全民K歌互动应援电视端界面">
+        <div class="mv-background" aria-hidden="true"></div>
+        <div class="atmosphere" aria-hidden="true">
+          <i class="aurora aurora--left"></i>
+          <i class="star star--one">✦</i>
+          <i class="star star--two">✧</i>
+          <i class="star star--three">◆</i>
+          <i class="star star--four">✦</i>
+          <i class="star star--five">✧</i>
+          <i class="star star--six">·</i>
+          <i class="star star--seven">♪</i>
+          <i class="star star--eight">✦</i>
+        </div>
+
+        <div class="combo-scanner" id="combo-scanner" aria-hidden="true">
+          <div class="scanner-grid"></div>
+          <div class="scanner-ripple"></div>
+          <div class="scanner-sweep"></div>
+          <div class="scanner-scanlines"></div>
+          <div class="scanner-grain"></div>
+          <div class="combo-burst">
+            <small>互动能量全开</small>
+            <strong>10</strong>
+            <span>连击</span>
+          </div>
+        </div>
+
+        <div class="rank-galaxy" id="rank-galaxy" aria-hidden="true">
+          <div class="rank-galaxy__mist"></div>
+          <div class="rank-galaxy__stars" id="rank-galaxy-stars"></div>
+          <div class="rank-galaxy__copy">
+            <small>S RANK</small>
+            <strong>星河应援</strong>
+          </div>
+        </div>
+
+        <header class="tv-header">
+          <section class="song-card" aria-label="当前歌曲">
+            <img class="song-card__qr" src="./assets/decorative-qr.png" alt="原型中的二维码占位图" />
+            <div class="song-card__copy">
+              <div class="song-card__title">晴天</div>
+              <div class="song-card__meta">
+                <span>周杰伦</span>
+                <b id="song-time">00:00 / 01:00</b>
+              </div>
+            </div>
+          </section>
+
+          <div class="phone-tip"><span aria-hidden="true">◈</span> 手机点歌，解锁更多互动</div>
+
+          <section class="mode-card" aria-label="当前互动模式">
+            <div class="mode-card__copy">
+              <span class="mode-kicker">家庭 K 歌多人模式</span>
+              <h1>互动应援</h1>
+            </div>
+            <div class="online-status"><i></i><strong>4</strong> 人已连接</div>
+          </section>
+
+          <div class="brand-mark" aria-label="全民K歌">
+            <img src="./assets/karaoke-logo-white.png" alt="全民K歌" />
+          </div>
+
+        </header>
+
+        <section class="playfield" aria-label="互动应援节奏轨道">
+          <div class="judgement" id="judgement" aria-live="polite">
+            <span id="judgement-label">准备</span>
+            <strong id="judgement-score">等待节拍</strong>
+            <small id="judgement-player">任意玩家都可以应援</small>
+          </div>
+
+          <div class="pulse-target" id="pulse-target" aria-hidden="true">
+            <div class="ring-layer" id="ring-layer"></div>
+            <span class="target-orbit target-orbit--outer"></span>
+            <span class="target-orbit target-orbit--inner"></span>
+            <i class="target-core"></i>
+          </div>
+
+          <div class="note-lane" aria-hidden="true">
+            <div class="lane-beam"></div>
+            <div class="lane-specks"></div>
+            <div class="note-layer" id="note-layer"></div>
+          </div>
+
+        </section>
+
+        <div class="energy-particle-layer" id="energy-particle-layer" aria-hidden="true"></div>
+
+        <aside class="score-card" aria-label="实时互动应援成绩">
+          <div class="rank-medal">
+            <span id="rank-value">B</span>
+            <small>当前评级</small>
+          </div>
+
+          <div class="score-summary">
+            <div class="score-metric">
+              <span id="score-label">实时总分</span>
+              <strong id="score-value">0</strong>
+            </div>
+            <div class="combo-metric">
+              <span>连击</span>
+              <strong id="combo-value">0</strong>
+            </div>
+          </div>
+
+          <div class="score-stats">
+            <dl><dt>PERFECT</dt><dd id="perfect-count">0</dd></dl>
+            <dl><dt>GOOD</dt><dd id="good-count">0</dd></dl>
+            <dl><dt>MISS</dt><dd id="miss-count">0</dd></dl>
+            <dl><dt>最高连击</dt><dd id="max-combo">0</dd></dl>
+          </div>
+
+          <video
+            class="score-character"
+            id="score-character"
+            src="./assets/ip-videos/normal-1.webm"
+            aria-label="根据应援结果变化的全民K歌形象"
+            autoplay
+            muted
+            playsinline
+            preload="auto"
+          ></video>
+          <div class="character-cheer" id="character-cheer" aria-live="polite" aria-atomic="true">
+            <img id="character-cheer-image" src="" alt="" />
+          </div>
+          <div class="finish-badge" id="finish-badge">本轮应援完成</div>
+        </aside>
+
+        <section class="lyrics" aria-label="滚动歌词" aria-live="polite">
+          <p class="lyrics__current" id="lyric-current"></p>
+          <p class="lyrics__next" id="lyric-next"></p>
+        </section>
+
+        <div class="timing-toast" id="timing-toast" role="status">音符还没进入判定区</div>
+
+        <section class="result-overlay" id="result-overlay" aria-labelledby="result-title" aria-hidden="true">
+          <div class="result-backdrop" aria-hidden="true"></div>
+          <div class="result-confetti" id="result-confetti" aria-hidden="true"></div>
+
+          <div class="result-modal" role="dialog" aria-modal="true">
+            <div class="result-modal__glow" aria-hidden="true"></div>
+            <header class="result-heading">
+              <span class="result-kicker">RHYTHM CHEER · 本轮结算</span>
+              <h2 id="result-title">应援圆满落幕</h2>
+              <p id="result-subtitle">这一段，你们让全场发光</p>
+            </header>
+
+            <div class="result-layout">
+              <section class="result-score" aria-label="本轮应援成绩">
+                <div class="result-rank-wrap">
+                  <span>本轮评级</span>
+                  <strong id="result-rank">SS</strong>
+                  <i aria-hidden="true">✦</i>
+                </div>
+                <div class="result-score-total">
+                  <span>互动总分</span>
+                  <strong id="result-score">36,780</strong>
+                </div>
+                <div class="result-score-details">
+                  <dl><dt>命中节拍</dt><dd id="result-hits">23</dd></dl>
+                  <dl><dt>最高连击</dt><dd id="result-combo">32</dd></dl>
+                </div>
+              </section>
+
+              <section class="result-character-stage" aria-label="全民K歌 IP 谢幕动画">
+                <div class="character-halo" aria-hidden="true"></div>
+                <div class="character-platform" aria-hidden="true"></div>
+                <div class="result-character-confetti" id="result-character-confetti" aria-hidden="true"></div>
+                <video
+                  class="result-character"
+                  id="result-character"
+                  src="./assets/ip-videos/curtain.webm"
+                  aria-label="全民K歌形象正在谢幕"
+                  loop
+                  muted
+                  playsinline
+                  preload="auto"
+                ></video>
+              </section>
+
+              <section class="result-next" aria-label="选择后续操作">
+                <span class="result-next__label">接下来</span>
+                <h3>要再闪耀一轮吗？</h3>
+                <p>选择结束互动，或直接继续下一轮应援。</p>
+
+                <div class="result-actions">
+                  <button class="result-button result-button--continue" id="result-continue" type="button">
+                    <span>继续应援</span>
+                    <small>点击后开始下一轮</small>
+                  </button>
+                  <button class="result-button result-button--end" id="result-end" type="button">结束互动</button>
+                </div>
+
+                <div class="result-ended-state" aria-live="polite">
+                  <span>互动已结束</span>
+                  <p>感谢这一轮的闪亮应援</p>
+                  <button id="result-restart" type="button">重新开始</button>
+                </div>
+              </section>
+            </div>
+
+          </div>
+        </section>
+            </main>
+          </div>
+        </div>
+        <div class="tv-device__caption">
+          <span><i></i> 电视端 · 1920 × 1080</span>
+          <strong id="tv-link-status">等待手机开启</strong>
+        </div>
+      </section>
+
+      <aside class="phone-companion" id="phone-companion" data-view="start" aria-label="互动应援手机端">
+        <div class="phone-shell">
+          <div class="phone-screen">
+            <section class="mobile-view mobile-view--start is-active" data-mobile-view="start">
+              <img class="mobile-reference-art" src="./assets/mobile-reference/start.png" alt="互动应援活动开始页" />
+              <button class="mobile-fullscreen-entry" id="mobile-start" type="button" aria-label="轻触进入互动应援教程"></button>
+            </section>
+
+            <section class="mobile-view mobile-view--tutorial" data-mobile-view="tutorial">
+              <img class="mobile-reference-art" src="./assets/mobile-reference/tutorial.png" alt="左右晃动手机的操作教程" />
+              <button class="mobile-reference-back" id="mobile-tutorial-back" type="button" aria-label="返回活动开始页"></button>
+              <button class="mobile-tutorial-action" id="mobile-tutorial-start" type="button" aria-label="模拟晃动并开始互动"></button>
+            </section>
+
+            <section class="mobile-view mobile-view--play" data-mobile-view="play">
+              <div class="mobile-play-atmosphere" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <header class="mobile-live-header">
+                <button class="mobile-back" id="mobile-stop" type="button" aria-label="退出互动"><span aria-hidden="true">←</span></button>
+                <div>
+                  <small>晴天</small>
+                  <strong>周杰伦</strong>
+                </div>
+                <span><i></i> 4 人在线</span>
+              </header>
+              <div class="mobile-progress"><i id="mobile-progress-bar"></i></div>
+              <div class="mobile-live-copy" data-state="idle" aria-live="polite">
+                <i aria-hidden="true"></i>
+                <h2 id="mobile-live-title"></h2>
+              </div>
+              <div class="mobile-shake-zone">
+                <span class="mobile-orbit mobile-orbit--outer"></span>
+                <span class="mobile-orbit mobile-orbit--inner"></span>
+                <span class="mobile-shake-core" aria-hidden="true"><i>✦</i></span>
+                <button class="mobile-shake-trigger player-shake--manual" id="mobile-shake" type="button" data-player="0" aria-label="摇晃手机完成应援">
+                </button>
+              </div>
+              <div class="mobile-live-stats">
+                <dl><dt>我的应援</dt><dd id="mobile-hit-count">0</dd></dl>
+                <dl><dt>全场连击</dt><dd id="mobile-combo">0</dd></dl>
+              </div>
+              <div class="mobile-players" aria-label="四位玩家连接状态">
+                <i class="is-me">1</i><i>2</i><i>3</i><i>4</i><span>你正在控制蓝色光圈</span>
+              </div>
+            </section>
+
+            <section class="mobile-view mobile-view--result" data-mobile-view="result">
+              <div class="mobile-result-confetti" id="mobile-result-confetti" aria-hidden="true"></div>
+                <header class="mobile-result-heading">
+                  <small>互动应援 · 本轮结算</small>
+                  <h2>本轮应援成绩</h2>
+                  <p>这一段，你让《晴天》更热闹了</p>
+                </header>
+              <div class="mobile-result-dialog">
+                <div class="mobile-result-sheet">
+                  <div class="mobile-result-summary">
+                    <div class="mobile-result-rank-block">
+                      <small>本轮评级</small>
+                      <div class="mobile-result-orb" aria-label="本轮评级"><span id="mobile-result-rank">SS</span></div>
+                    </div>
+                    <div class="mobile-result-scoreline"><small>互动总分</small><strong id="mobile-result-score">0</strong></div>
+                  </div>
+                  <div class="mobile-result-card">
+                    <dl><dt>命中节拍</dt><dd><span id="mobile-result-hits">0</span></dd></dl>
+                    <dl><dt>最高连击</dt><dd><span id="mobile-result-combo">0</span></dd></dl>
+                    <dl class="mobile-result-total"><dt>全场共同晃动</dt><dd><span id="mobile-result-total">0</span> 次</dd></dl>
+                  </div>
+                </div>
+                <div class="mobile-result-actions">
+                  <button class="mobile-primary-button mobile-primary-button--continue" id="mobile-continue" type="button">继续应援</button>
+                  <button class="mobile-secondary-button" id="mobile-end" type="button">结束应援</button>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+        <div class="phone-companion__caption">
+          <span><i></i> 手机端 · 实时联动</span>
+          <strong id="phone-link-status">未连接</strong>
+        </div>
+      </aside>
+    </div>
+    <footer class="portfolio-note">
+      <span>个人交互设计原型 · 非全民K歌官方产品 · 同屏模拟联动</span>
+      <span>点击手机开始 → 点击光圈或按数字 1 应援</span>
+    </footer>
+    <script src="./app.js?v=43"></script>
+  </body>
+</html>
