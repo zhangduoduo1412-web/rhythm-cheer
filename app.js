@@ -12,7 +12,7 @@ const captureDevice = params.get("device");
 if (captureDevice === "tv" || captureDevice === "phone") {
   document.body.dataset.captureDevice = captureDevice;
 }
-const SONG_TOTAL_LABEL = "01:00";
+const SONG_TOTAL_LABEL = "00:40";
 
 const characterVideos = {
   normal: "./assets/ip-videos/normal-1.webm",
@@ -76,7 +76,7 @@ const lyricLines = [
   "但故事的最后你好像还是说了拜",
 ];
 
-const durationMs = isTest ? 14000 : 60000;
+const durationMs = isTest ? 14000 : 40000;
 const travelMs = isTest ? 1800 : 5200;
 const noteIntervalMs = isTest ? 900 : 1950;
 const perfectWindow = 12;
